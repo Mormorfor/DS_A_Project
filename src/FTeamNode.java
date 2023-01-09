@@ -3,7 +3,7 @@ public class FTeamNode {
     public FTeamNode middle;
     public FTeamNode right;
     public FTeamNode parent;
-    public int faculty_id;
+    private int faculty_id;
 
 
 
