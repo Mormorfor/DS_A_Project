@@ -2,10 +2,25 @@ import java.util.ArrayList;
 
 public class TechnionTournament implements Tournament{
 
+    FTeamNode root;
+
     TechnionTournament(){};
+
 
     @Override
     public void init() {
+        FTeamNode root = new FTeamNode();
+        FTeamNode left  = new FTeamNode();
+        FTeamNode middle  = new FTeamNode();
+        left.setFaculty_id(Integer.MIN_VALUE);
+        middle.setFaculty_id(Integer.MAX_VALUE);
+        left.setParent(root);
+        middle.setParent(root);
+        root.setFaculty_id(Integer.MAX_VALUE);
+        root.setLeft(left);
+        root.setMiddle(middle);
+
+        this.root = root;
     }
 
     @Override
