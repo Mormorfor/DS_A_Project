@@ -8,6 +8,16 @@ public class FacultyLeaf extends InnerFacultyNode {
         players = new Player[11];
         index = 0;
     }
+    FacultyLeaf(Faculty faculty){
+        players = new Player[11];
+        index = 0;
+        this.faculty = faculty;
+        setId(faculty.getId());
+    }
+
+    public Faculty getFaculty() {
+        return faculty;
+    }
 
     public void addPlayer(Player pl){
         if(index == MAX_NUM_PLAYERS-1){

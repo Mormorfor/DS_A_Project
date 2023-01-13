@@ -101,7 +101,7 @@ public  class FacultyTree {
         updateKey(x);
     }
 
-    public void delete (FacultyLeaf node){
+    public void delete(FacultyLeaf node){
        InnerFacultyNode y = node.parent;
        if(node == y.left) {
            setChildren(y, y.middle, y.right, null);
@@ -129,7 +129,64 @@ public  class FacultyTree {
     }
 
     private InnerFacultyNode borrowOrMerge(InnerFacultyNode y){
-
+        InnerFacultyNode z = y.parent;
+        InnerFacultyNode x;
+        if(y == z.left){
+            x = z.middle;
+            if(x.right !=  null){
+                setChildren(y,y.left,x.left,null);
+                setChildren(x,x.middle,x.right, null);
+            }
+            else{
+                setChildren(x, y.left, x.left, x.middle);
+                setChildren(z,x,z.right, null);
+            }
+            return z;
+        }
+        if (y == z.middle){
+            x = z.left;
+            if(x.right != null){
+                setChildren(y, x.right, y.left, null);
+                setChildren(x,x.left, x.middle, null);
+            }
+            else{
+                setChildren(x,x.left,x.middle, y.left);
+                setChildren(z,x,z.right,null);
+            }
+            return z;
+        }
+        x = z.middle;
+        if(x.right != null){
+            setChildren(y,x.right,y.left, null);
+            setChildren(x, x.left, x.middle, null);
+        }
+        else{
+            setChildren(x, x.left, x.middle,y.left);
+            setChildren(z,z.left, x, null);
+        }
+        return z;
     }
+
+    public FacultyLeaf search(int faclId){
+        return searchAdd(this.root, faclId);
+    }
+
+    private FacultyLeaf searchAdd(InnerFacultyNode x, int id){
+        if(x instanceof FacultyLeaf){
+            if(x.getId() == id)
+                return (FacultyLeaf) x;
+            else
+                return null;
+        }
+        if(id <= x.left.getId()){
+            return searchAdd(x.left, id);
+        }
+        else if (id <= x.middle.getId()){
+            return searchAdd(x.middle, id);
+        }
+        else
+            return searchAdd(x.right, id);
+    }
+
 
 }

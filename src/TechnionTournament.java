@@ -16,7 +16,9 @@ public class TechnionTournament implements Tournament{
 
     @Override
     public void addFacultyToTournament(Faculty faculty) {
+        FacultyLeaf newFaculty = new FacultyLeaf(faculty);
 
+        faclTree.insert(newFaculty);
     }
 
 
@@ -27,6 +29,13 @@ public class TechnionTournament implements Tournament{
 
     @Override
     public void addPlayerToFaculty(int faculty_id,Player player) {
+        PlayersLeaf newPlayer = new PlayersLeaf(player,faculty_id);
+        playersTree.insert(newPlayer);
+
+        FacultyLeaf relevantFacl = faclTree.search(faculty_id);
+        if(relevantFacl == null)
+            return;
+        relevantFacl.addPlayer(player);
 
     }
 

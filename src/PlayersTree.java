@@ -114,4 +114,72 @@ public class PlayersTree {
         }
         updateKey(x);
     }
+
+
+    public void delete(PlayersLeaf node){
+        InnerPlayersNode y = node.parent;
+        if(node == y.left) {
+            setChildren(y, y.middle, y.right, null);
+        }
+        else if (node == y.middle){
+            setChildren(y, y.left, y.right, null);
+        }
+        else setChildren(y, y.left, y.middle, null);
+        while(y != null) {
+            if (y.middle == null) {
+                if(y != this.root){
+                    y = borrowOrMerge(y);
+                }
+                else{
+                    this.root = y.left;
+                    y.left.parent = null;
+                    return;
+                }
+            }
+            else{
+                updateKey(y);
+                y = y.parent;
+            }
+        }
+    }
+
+    private InnerPlayersNode borrowOrMerge(InnerPlayersNode y){
+        InnerPlayersNode z = y.parent;
+        InnerPlayersNode x;
+        if(y == z.left){
+            x = z.middle;
+            if(x.right !=  null){
+                setChildren(y,y.left,x.left,null);
+                setChildren(x,x.middle,x.right, null);
+            }
+            else{
+                setChildren(x, y.left, x.left, x.middle);
+                setChildren(z,x,z.right, null);
+            }
+            return z;
+        }
+        if (y == z.middle){
+            x = z.left;
+            if(x.right != null){
+                setChildren(y, x.right, y.left, null);
+                setChildren(x,x.left, x.middle, null);
+            }
+            else{
+                setChildren(x,x.left,x.middle, y.left);
+                setChildren(z,x,z.right,null);
+            }
+            return z;
+        }
+        x = z.middle;
+        if(x.right != null){
+            setChildren(y,x.right,y.left, null);
+            setChildren(x, x.left, x.middle, null);
+        }
+        else{
+            setChildren(x, x.left, x.middle,y.left);
+            setChildren(z,z.left, x, null);
+        }
+        return z;
+    }
+
 }
