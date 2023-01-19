@@ -28,7 +28,6 @@ public class InnerPlayersNode {
         if(node1.getFaculId() == node2.getFaculId()){
             return node1.getPlayerId() > node2.getPlayerId();
         }
-
         return node1.getFaculId() > node2.getFaculId();
     }
 }

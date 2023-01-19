@@ -63,7 +63,6 @@ public class PlayersTree {
         }
     }
 
-
     private InnerPlayersNode insertAndSplit(InnerPlayersNode x, InnerPlayersNode z){
         InnerPlayersNode l = x.left;
         InnerPlayersNode m = x.middle;
@@ -181,5 +180,13 @@ public class PlayersTree {
         }
         return z;
     }
+
+    public void makeFreeAgent(PlayersLeaf leaf){
+        delete(leaf);
+        leaf.setFaculId(-1);
+        insert(leaf);
+    }
+
+
 
 }

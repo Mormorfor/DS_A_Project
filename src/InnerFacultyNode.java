@@ -1,6 +1,6 @@
 public class InnerFacultyNode {
 
-    private int id;
+    protected int id;
     public InnerFacultyNode left;
     public InnerFacultyNode middle;
     public InnerFacultyNode right;
