@@ -4,9 +4,9 @@ public abstract class TwoThreeTree {
     public void insert(Leaf node){
         InnerNode x = this.root;
         while( !(x instanceof Leaf)){
-            if(node.getId() < x.getLeft().getId())
+            if(compareKeys(node, x.getLeft()))
                 x = x.getLeft();
-            else if (node.getId() < x.getMiddle().getId())
+            else if (compareKeys(node, x.getMiddle()))
                 x = x.getMiddle();
             else
                 x = x.getRight();
@@ -36,10 +36,10 @@ public abstract class TwoThreeTree {
         InnerNode r = x.getRight();
 
         if (r == null){
-            if (z.getId() < l.getId()){
+            if (compareKeys(z,l)){
                 setChildren(x,z,l,m);
             }
-            else if (z.getId() < m.getId()){
+            else if (compareKeys(z,m)){
                 setChildren(x,l,z,m);
             }
             else
@@ -47,15 +47,15 @@ public abstract class TwoThreeTree {
             return null;
         }
         InnerFacultyNode y = new InnerFacultyNode();
-        if (z.getId() < l.getId()){
+        if (compareKeys(z,l)){
             setChildren(x,z,l,null);
             setChildren(y,m,r,null);
         }
-        else if (z.getId() < m.getId()){
+        else if (compareKeys(z,m)){
             setChildren(x,l,z,null);
             setChildren(y,m,r,null);
         }
-        else if (z.getId() < r.getId()){
+        else if (compareKeys(z,r)){
             setChildren(x,l,m, null);
             setChildren(y,z,r,null);
         }
@@ -144,6 +144,10 @@ public abstract class TwoThreeTree {
             setChildren(z,z.getLeft(), x, null);
         }
         return z;
+    }
+
+    public boolean compareKeys(InnerNode one, InnerNode two){
+        return(one.getId()< two.getId());
     }
 
 

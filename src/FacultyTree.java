@@ -23,10 +23,10 @@ public  class FacultyTree extends TwoThreeTree {
 
 
     public FacultyLeaf search(int faclId){
-        return searchAdd(this.root, faclId);
+        return SearchHelper(this.root, faclId);
     }
 
-    private FacultyLeaf searchAdd(InnerFacultyNode x, int id){
+    private FacultyLeaf SearchHelper(InnerFacultyNode x, int id){
         if(x instanceof FacultyLeaf){
             if(x.getId() == id)
                 return (FacultyLeaf) x;
@@ -34,13 +34,13 @@ public  class FacultyTree extends TwoThreeTree {
                 return null;
         }
         if(id <= x.left.getId()){
-            return searchAdd(x.left, id);
+            return SearchHelper(x.left, id);
         }
         else if (id <= x.middle.getId()){
-            return searchAdd(x.middle, id);
+            return SearchHelper(x.middle, id);
         }
         else
-            return searchAdd(x.right, id);
+            return SearchHelper(x.right, id);
     }
 
 
