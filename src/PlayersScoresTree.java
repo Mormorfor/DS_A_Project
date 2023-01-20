@@ -1,4 +1,4 @@
-public class PlayersScoresTree extends TwoThreeDoubleKey{
+public class PlayersScoresTree extends TwoThreeDoubleKeyTree {
     public PlayersScoresTree() {
         InnerPlayersScoresNode root = new InnerPlayersScoresNode();
         PlayersScoresLeaf left  = new PlayersScoresLeaf();
@@ -14,6 +14,9 @@ public class PlayersScoresTree extends TwoThreeDoubleKey{
         root.setId(Integer.MIN_VALUE);
         root.left = left;
         root.middle = middle;
+        left.setRightN(middle);
+        middle.setLeftN(left);
+        maxScorer = left;
         this.root = root;
     }
     @Override
@@ -25,4 +28,9 @@ public class PlayersScoresTree extends TwoThreeDoubleKey{
         }
         return(firstNode.getScoreId() < secondNode.getScoreId());
     }
+    @Override
+    public void insert(Leaf node){
+        super.insert(node);
+    }
+
 }

@@ -1,8 +1,9 @@
-public class FacultyScoresTree extends TwoThreeDoubleKey{
+public class FacultyScoresTree extends TwoThreeDoubleKeyTree {
     public FacultyScoresTree() {
         FacultyScoresInnerNode root = new FacultyScoresInnerNode();
         FacultyScoresLeaf left  = new FacultyScoresLeaf();
         FacultyScoresLeaf middle  = new FacultyScoresLeaf();
+
 
         left.setScoreId(Integer.MIN_VALUE);
         middle.setScoreId(Integer.MAX_VALUE);
@@ -14,6 +15,9 @@ public class FacultyScoresTree extends TwoThreeDoubleKey{
         root.setId(Integer.MIN_VALUE);
         root.left = left;
         root.middle = middle;
+        left.setRightN(middle);
+        middle.setLeftN(left);
+        maxScorer = left;
         this.root = root;
     }
     @Override

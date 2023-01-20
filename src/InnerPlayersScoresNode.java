@@ -5,6 +5,9 @@ public class InnerPlayersScoresNode implements InnerDoubleNode{
     protected InnerPlayersScoresNode middle;
     protected InnerPlayersScoresNode right;
     protected InnerPlayersScoresNode parent;
+    InnerPlayersScoresNode(){
+        this.scoreId = 0;
+    }
     @Override
     public void setLeft(InnerNode left) {
         this.left = (InnerPlayersScoresNode) left;
