@@ -1,4 +1,4 @@
-public class FacultyLeaf extends InnerFacultyNode {
+public class FacultyLeaf extends InnerFacultyNode implements Leaf {
     Faculty faculty;
     public PlayersLeaf[] players;
     private static final int MAX_NUM_PLAYERS = 11;

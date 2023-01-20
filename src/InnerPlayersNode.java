@@ -1,33 +1,55 @@
-public class InnerPlayersNode {
+public class InnerPlayersNode implements InnerNode{
 
-    int faculId;
-    int playerId;
+    protected int id;
+    protected InnerPlayersNode left;
+    protected InnerPlayersNode middle;
+    protected InnerPlayersNode right;
+    protected InnerPlayersNode parent;
 
-    public InnerPlayersNode left;
-    public InnerPlayersNode middle;
-    public InnerPlayersNode right;
-    public InnerPlayersNode parent;
-
-    public int getFaculId() {
-        return faculId;
+    @Override
+    public int getId() {
+        return id;
     }
 
-    public int getPlayerId() {
-        return playerId;
+    @Override
+    public InnerPlayersNode getLeft() {
+        return left;
     }
 
-    public void setFaculId(int faculId) {
-        this.faculId = faculId;
+    @Override
+    public InnerPlayersNode getMiddle() {
+        return middle;
     }
 
-    public void setPlayerId(int playerId) {
-        this.playerId = playerId;
+    @Override
+    public InnerPlayersNode getRight() {
+        return right;
     }
 
-    public boolean comparePlayerKeys(InnerPlayersNode node1, InnerPlayersNode node2){
-        if(node1.getFaculId() == node2.getFaculId()){
-            return node1.getPlayerId() > node2.getPlayerId();
-        }
-        return node1.getFaculId() > node2.getFaculId();
+    @Override
+    public InnerPlayersNode getParent() {
+        return parent;
+    }
+
+
+    @Override
+    public void setId(int id) {
+        this.id = id;
+    }
+    @Override
+    public void setLeft(InnerNode left) {
+        this.left = (InnerPlayersNode) left;
+    }
+    @Override
+    public void setMiddle(InnerNode middle) {
+        this.middle = (InnerPlayersNode) middle;
+    }
+    @Override
+    public void setRight(InnerNode right) {
+        this.right = (InnerPlayersNode) right;
+    }
+    @Override
+    public void setParent(InnerNode parent) {
+        this.parent = (InnerPlayersNode) parent;
     }
 }

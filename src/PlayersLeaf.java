@@ -1,11 +1,10 @@
-public class PlayersLeaf extends InnerPlayersNode{
+public class PlayersLeaf extends InnerPlayersNode implements Leaf{
     Player player;
 
     PlayersLeaf(){}
-    PlayersLeaf(Player player, int faclId) {
+    PlayersLeaf(Player player) {
         this.player = player;
-        this.faculId = faclId;
-        this.playerId = player.getId();
+        this.setId(player.getId());
     }
 
 }

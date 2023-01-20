@@ -16,8 +16,8 @@ public class TechnionTournament implements Tournament{
 
     @Override
     public void addFacultyToTournament(Faculty faculty) {
-        FacultyLeaf newFaculty = new FacultyLeaf(faculty);
-
+        Faculty facl = new Faculty(faculty.getId(), faculty.getName());
+        FacultyLeaf newFaculty = new FacultyLeaf(facl);
         faclTree.insert(newFaculty);
     }
 
@@ -28,17 +28,15 @@ public class TechnionTournament implements Tournament{
         PlayersLeaf[] player = facl.players;
         for(int i = 0; i < facl.index; i++ ){
             facl.removePlayer(player[i]);
-            playersTree.makeFreeAgent(player[i]);
-
         }
         faclTree.delete(facl);
-		
+
     }
 
     @Override
     public void addPlayerToFaculty(int faculty_id,Player player) {
         Player plr = new Player(player.getId(), player.getName());
-        PlayersLeaf newPlayer = new PlayersLeaf(plr,faculty_id);
+        PlayersLeaf newPlayer = new PlayersLeaf(plr);
         playersTree.insert(newPlayer);
 
         FacultyLeaf relevantFacl = faclTree.search(faculty_id);
@@ -54,9 +52,8 @@ public class TechnionTournament implements Tournament{
         PlayersLeaf[] player = facl.players;
 
         for(int i = 0; i < facl.index; i++ ){
-            if(player[i].playerId == player_id){
+            if(player[i].getId() == player_id){
                 facl.removePlayer(player[i]);
-                playersTree.makeFreeAgent(player[i]);
             }
         }
     }
