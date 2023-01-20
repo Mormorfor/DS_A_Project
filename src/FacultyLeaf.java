@@ -27,7 +27,7 @@ public class FacultyLeaf extends InnerFacultyNode implements Leaf {
             return;
         }
         else{
-            players[index+1] = pl;
+            players[index] = pl;
             index++;
         }
     }
@@ -51,5 +51,9 @@ public class FacultyLeaf extends InnerFacultyNode implements Leaf {
 
     public void setFacScore(FacultyScoresLeaf facScore) {
         this.facScore = facScore;
+    }
+
+    public int getIndex() {
+        return index;
     }
 }

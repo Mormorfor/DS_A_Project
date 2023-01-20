@@ -101,12 +101,13 @@ public class TechnionTournament implements Tournament{
         PlayersScoresLeaf plScoree1 = pl.getPlScore();
         playScoreTree.delete(plScoree1);
         plScoree1.setScoreId(plScoree1.getScoreId() + 1);
-        facScoreTree.insert(plScoree1);
+        playScoreTree.insert(plScoree1);
     }
     @Override
     public void getTopScorer(Player player) {
         PlayersScoresLeaf bestPlayer = (PlayersScoresLeaf)playScoreTree.getMaxScorer();
-        player = bestPlayer.getPlayer();
+        player.setId(bestPlayer.getPlayer().getId());
+        player.setName(bestPlayer.getPlayer().getName());
 
     }
 
@@ -116,17 +117,19 @@ public class TechnionTournament implements Tournament{
         PlayersLeaf[] players = fac.players;
         Player play = players[0].getPlScore().getPlayer();
         int max = -1;
-        for(PlayersLeaf pl : players){
-            if(max<pl.getPlScore().getScoreId()){
-                play = pl.getPlScore().getPlayer();
+        for(int i=0; i < fac.getIndex();i++ ){
+            if(max < players[i].getPlScore().getScoreId()){
+                play = players[i].getPlScore().getPlayer();
+                max = players[i].getPlScore().getScoreId();
             }
-            else if(max == pl.getPlScore().getScoreId()){
-                if(play.getId()>pl.getPlScore().getPlayer().getId()){
-                    play = pl.getPlScore().getPlayer();
+            else if(max == players[i].getPlScore().getScoreId()){
+                if(play.getId()>players[i].getPlScore().getPlayer().getId()){
+                    play = players[i].getPlScore().getPlayer();
                 }
             }
         }
-        player = play;
+        player.setId(play.getId());
+        player.setName(play.getName());
     }
 
     @Override
@@ -134,13 +137,13 @@ public class TechnionTournament implements Tournament{
         FacultyScoresLeaf currentFaculty = (FacultyScoresLeaf)facScoreTree.getMaxScorer();
         if(ascending) {
             for (int i = k-1; i >= 0; i--) {
-                faculties.set(i,currentFaculty.getFaculty());
+                faculties.add(0,currentFaculty.getFaculty());
                 currentFaculty = (FacultyScoresLeaf)currentFaculty.getLeftN();
             }
         }
         else{
             for (int i = 0; i < k; i++) {
-                faculties.set(i,currentFaculty.getFaculty());
+                faculties.add(currentFaculty.getFaculty());
                 currentFaculty = (FacultyScoresLeaf)currentFaculty.getLeftN();
             }
         }
@@ -151,13 +154,13 @@ public class TechnionTournament implements Tournament{
         PlayersScoresLeaf currentPlayer = (PlayersScoresLeaf)playScoreTree.getMaxScorer();
         if(ascending) {
             for (int i = k-1; i >= 0; i--) {
-                players.set(i,currentPlayer.getPlayer());
+                players.add(0,currentPlayer.getPlayer());
                 currentPlayer = (PlayersScoresLeaf)currentPlayer.getLeftN();
             }
         }
         else{
             for (int i = 0; i < k; i++) {
-                players.set(i,currentPlayer.getPlayer());
+                players.add(currentPlayer.getPlayer());
                 currentPlayer = (PlayersScoresLeaf)currentPlayer.getLeftN();
             }
         }
@@ -166,7 +169,9 @@ public class TechnionTournament implements Tournament{
     @Override
     public void getTheWinner(Faculty faculty) {
         FacultyScoresLeaf winner = (FacultyScoresLeaf) facScoreTree.getMaxScorer();
-        faculty = winner.getFaculty();
+
+        faculty.setId(winner.getFaculty().getId());
+        faculty.setName(winner.getFaculty().getName());
     }
 
 
