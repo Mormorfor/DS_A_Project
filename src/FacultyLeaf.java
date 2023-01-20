@@ -4,6 +4,8 @@ public class FacultyLeaf extends InnerFacultyNode implements Leaf {
     private static final int MAX_NUM_PLAYERS = 11;
     public int index;
 
+    protected FacultyScoresLeaf facScore;
+
     FacultyLeaf(){
         players = new PlayersLeaf[11];
         index = 0;
@@ -41,5 +43,13 @@ public class FacultyLeaf extends InnerFacultyNode implements Leaf {
                 return;
             }
         }
+    }
+
+    public FacultyScoresLeaf getFacScore() {
+        return facScore;
+    }
+
+    public void setFacScore(FacultyScoresLeaf facScore) {
+        this.facScore = facScore;
     }
 }

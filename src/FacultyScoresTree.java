@@ -1,6 +1,6 @@
 public class FacultyScoresTree extends TwoThreeDoubleKeyTree {
     public FacultyScoresTree() {
-        FacultyScoresInnerNode root = new FacultyScoresInnerNode();
+        InnerFacultyScoresNode root = new InnerFacultyScoresNode();
         FacultyScoresLeaf left  = new FacultyScoresLeaf();
         FacultyScoresLeaf middle  = new FacultyScoresLeaf();
 
@@ -22,8 +22,8 @@ public class FacultyScoresTree extends TwoThreeDoubleKeyTree {
     }
     @Override
     public boolean compareKeys(InnerNode one, InnerNode two){
-        FacultyScoresInnerNode firstNode = (FacultyScoresInnerNode) one;
-        FacultyScoresInnerNode secondNode = (FacultyScoresInnerNode) two;
+        InnerFacultyScoresNode firstNode = (InnerFacultyScoresNode) one;
+        InnerFacultyScoresNode secondNode = (InnerFacultyScoresNode) two;
         if(firstNode.getScoreId() == secondNode.getScoreId()){
             return (firstNode.getId() > secondNode.getId());
         }

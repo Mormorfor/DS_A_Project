@@ -21,6 +21,26 @@ public class PlayersTree extends TwoThreeTree{
 
         this.root = root;
     }
+    public PlayersLeaf search(int playerId){
+        return SearchHelper(this.root, playerId);
+    }
+
+    private PlayersLeaf SearchHelper(InnerPlayersNode x, int id){
+        if(x instanceof PlayersLeaf){
+            if(x.getId() == id)
+                return (PlayersLeaf) x;
+            else
+                return null;
+        }
+        if(id <= x.left.getId()){
+            return SearchHelper(x.left, id);
+        }
+        else if (id <= x.middle.getId()){
+            return SearchHelper(x.middle, id);
+        }
+        else
+            return SearchHelper(x.right, id);
+    }
 
 
 }

@@ -1,25 +1,27 @@
-public class FacultyScoresInnerNode implements InnerDoubleNode{
+public class InnerFacultyScoresNode implements InnerDoubleNode{
     protected int scoreId;
     protected int id;
-    protected FacultyScoresInnerNode left;
-    protected FacultyScoresInnerNode middle;
-    protected FacultyScoresInnerNode right;
-    protected FacultyScoresInnerNode parent;
+    protected InnerFacultyScoresNode left;
+    protected InnerFacultyScoresNode middle;
+    protected InnerFacultyScoresNode right;
+    protected InnerFacultyScoresNode parent;
+
+
     @Override
     public void setLeft(InnerNode left) {
-        this.left = (FacultyScoresInnerNode) left;
+        this.left = (InnerFacultyScoresNode) left;
     }
     @Override
     public void setMiddle(InnerNode middle) {
-        this.middle =  (FacultyScoresInnerNode)middle;
+        this.middle =  (InnerFacultyScoresNode)middle;
     }
     @Override
     public void setRight(InnerNode right) {
-        this.right = (FacultyScoresInnerNode) right;
+        this.right = (InnerFacultyScoresNode) right;
     }
     @Override
     public void setParent(InnerNode parent) {
-        this.parent =  (FacultyScoresInnerNode)parent;
+        this.parent =  (InnerFacultyScoresNode)parent;
     }
 
     @Override
