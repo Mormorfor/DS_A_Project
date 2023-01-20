@@ -8,7 +8,7 @@ public class TechnionTournament implements Tournament{
     FacultyScoresTree facScoreTree;
 
     PlayersScoresTree playScoreTree;
-    TechnionTournament(){};
+    TechnionTournament(){}
 
 
     @Override
