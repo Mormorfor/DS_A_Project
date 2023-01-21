@@ -1,7 +1,7 @@
 public class FacultyLeaf extends InnerFacultyNode implements Leaf {
     Faculty faculty;
     public PlayersLeaf[] players;
-    private static final int MAX_NUM_PLAYERS = 11;
+
     public int index;
 
     protected FacultyScoresLeaf facScore;
@@ -22,22 +22,16 @@ public class FacultyLeaf extends InnerFacultyNode implements Leaf {
     }
 
     public void addPlayer(PlayersLeaf pl){
-        if(index == MAX_NUM_PLAYERS-1){
-            System.out.println("Out of players space!");
-            return;
-        }
-        else{
-            players[index] = pl;
-            index++;
-        }
+       players[index] = pl;
+       index++;
+
     }
 
     public void removePlayer(PlayersLeaf pl){
-        if(index == 0){
-            return;
-        }
-        for(int i = 0; i <= index; i++){
+
+        for(int i = 0; i < index; i++){
             if(players[i] == pl){
+                index--;
                 players[i] = players[index];
                 players[index] = null;
                 return;
